@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#222b29">
+  <meta name="description" content="依《红楼梦》第五回原文重现的金陵十二钗正册。展卷、翻页，阅十一幅画意与十二钗判词。">
+  <title>金陵十二钗正册 · 太虚幻境</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='5' fill='%232b3935'/%3E%3Cpath d='M10 7h20v27H10z' fill='%23d6c4a0'/%3E%3Cpath d='M26 7v27M14 13h8m-8 6h8m-8 6h8' stroke='%238b3b2e' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css?v=20260928-original-paper-frame2">
+  <link rel="stylesheet" href="antique.css?v=20260928-original-paper-frame2">
+</head>
+<body>
+  <header class="topbar">
+    <a class="identity" href="#" id="home" aria-label="回到书封"><span class="identity-title">金陵十二釵</span><span class="identity-edition">正冊</span></a>
+    <div class="header-actions" id="headerActions"></div>
+    <button class="quiet icon-button" id="sourceButton" aria-label="关于此册"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v6M12 7.3v.4"/></svg></button>
+  </header>
+  <main>
+    <section class="reading-room" aria-label="金陵十二钗正册阅读区">
+      <div class="book-stage" id="bookStage">
+        <div class="book" id="book" data-phase="closed" data-page="1">
+          <div class="page-edges" aria-hidden="true"></div><div class="right-edges" aria-hidden="true"></div>
+          <div class="spread" id="spread" inert>
+            <article class="leaf left-leaf" id="leftLeaf"></article>
+            <article class="leaf right-leaf" id="rightLeaf"></article>
+            <div class="gutter" aria-hidden="true"></div><div class="turn-shadow" id="turnShadow" aria-hidden="true"></div>
+            <button class="page-hit next-hit" id="nextHit" aria-label="翻到下一幅"></button>
+            <button class="page-hit prev-hit" id="prevHit" aria-label="翻到上一幅"></button>
+          </div>
+          <div class="cover-hinge" id="coverHinge"><button class="cover" id="cover" aria-label="展开金陵十二钗正册">
+            <span class="cover-label"><span class="cover-title">金陵十二釵</span><span class="cover-subtitle">正冊</span></span>
+            <svg class="binding" viewBox="0 0 64 610" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <g class="binding-holes"><ellipse cx="28" cy="70" rx="3.7" ry="2.5"/><ellipse cx="28" cy="228" rx="3.7" ry="2.5"/><ellipse cx="28" cy="384" rx="3.7" ry="2.5"/><ellipse cx="28" cy="542" rx="3.7" ry="2.5"/></g>
+              <path class="binding-shadow" d="M64 1H28V609H64M28 70H64M28 228H64M28 384H64M28 542H64"/>
+              <path class="binding-thread" d="M64 1H28V609H64M28 70H64M28 228H64M28 384H64M28 542H64"/>
+              <path class="binding-twist" d="M29.5 3V607M30 71H63M30 229H63M30 385H63M30 543H63"/>
+            </svg>
+          </button><article class="leaf right-leaf cover-inside" id="coverInside" aria-hidden="true"></article></div>
+        </div>
+      </div>
+      <div class="control-area">
+      <div class="reader-controls" id="readerControls" hidden>
+        <div class="navigation">
+          <button class="nav-button icon-button" id="nextButton" aria-label="后一幅"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 6-6 6 6 6"/></svg></button>
+          <button class="folio-select" id="folioSelect" aria-haspopup="dialog"><span id="folioNumber">一 / 十一</span><span class="folio-name" id="folioName">钗黛</span></button>
+          <button class="nav-button icon-button" id="prevButton" aria-label="前一幅"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg></button>
+        </div>
+        <div class="leaf-mode" id="leafMode" role="group" aria-label="图叶与判词叶" hidden><button id="artView" aria-label="查看图叶" aria-pressed="true">图</button><span aria-hidden="true"></span><button id="poemView" aria-label="查看判词叶" aria-pressed="false">判</button></div>
+        <div class="minor-controls" id="readerActions"><button class="action-button" id="catalogButton" aria-label="目录" aria-haspopup="dialog">目录</button><button class="action-button" id="textButton" aria-label="释文与画意" aria-haspopup="dialog">释文</button><button class="action-button" id="closeButton" aria-label="合卷">合卷</button></div>
+      </div></div>
+    </section>
+  </main>
+  <dialog id="infoDialog" aria-labelledby="dialogTitle"><div class="dialog-top"><span class="eyebrow" id="dialogEyebrow">册页小记</span><button class="dialog-close" aria-label="关闭弹窗">×</button></div><div id="dialogContent"></div></dialog>
+  <div class="sr-only" role="status" aria-live="polite" id="announcement"></div>
+  <script src="content.js?v=20260928-original-paper-frame2"></script>
+  <script src="motion.js"></script>
+<script src="app.js?v=20260928-original-paper-frame2"></script>
+</body>
+</html>

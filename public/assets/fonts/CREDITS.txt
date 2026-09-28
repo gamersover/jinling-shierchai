@@ -1,0 +1,30 @@
+金陵十二钗正册 · 字体说明
+
+Jinling Poem Kai
+Fixed-text WOFF2 subset of TW-Kai Regular, version 11109.01（全字庫正楷體）.
+Copyright (c) 2022 Ministry of Digital Affairs, CNS11643 Chinese Standard Interchange Code.
+SIL Open Font License 1.1; see TW-Kai-OFL.txt.
+Original Regular outlines and weight 400 are unchanged. Only fixed-character subsetting, WOFF2 conversion, and family-name changes were applied.
+Used for the cover and page title; judgment leaves display separate AI calligraphy images with accessible text.
+Official project: https://www.cns11643.gov.tw/
+Official authorization: https://www.cns11643.gov.tw/pageView.jsp?ID=59
+Official download: https://www.cns11643.gov.tw/opendata/Fonts_Kai.zip
+Retrieval mirror (not the official host): https://raw.githubusercontent.com/XiaoPanPanKevinPan/fontCollection/main/TW-Kai-98_1.ttf
+Original SHA256: e11dbe9fbb1e84e9ba2c941a5c605fd1fd7660e18c3fcf51c28be79087ab27c9
+Rebuild materials: source/rebuild-poem.py and source/characters-poem.txt.
+
+Jinling Serif
+Fixed-text WOFF2 subset of Noto Serif SC at weight 450.
+SIL Open Font License 1.1; see NotoSerif-OFL.txt.
+Source: https://github.com/google/fonts/tree/main/ofl/notoserifsc
+
+Jinling Yan Light
+Lighter web subset of I.Ngaan 1.004（刻石录 I.颜体）.
+Retained as a declared fallback in the base stylesheet.
+Copyright: Dr. Hann-Tzong Wang, 1999–2004; Ichiten Fonts Project, 2013–14.
+GNU GPL 2.0 or later; see YAN-LICENSE.txt, GPL-2.0.txt and GPL-3.0.txt.
+Project-specific outline thinning (-8 font units), with original advance widths retained; not an official Light release.
+Modern Yan-style digital typeface, not Yan Zhenqing's handwriting.
+Author: https://founder.acgvlyric.org/iu/doku.php/造字:開源字型_i.顏體
+Retrieval mirror (not the author's host): https://github.com/yuleshow/chinese-fonts/blob/master/I.Ngaan.ttf
+Corresponding source font, required characters and rebuild script: source/I.Ngaan.ttf, source/characters.txt, source/rebuild-yan.py.

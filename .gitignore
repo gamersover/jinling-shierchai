@@ -1,0 +1,14 @@
+# Local tools and account/project links
+.vercel/
+node_modules/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+# Font rebuild diagnostics are not site content.
+public/assets/fonts/source/glyph-check.json
+public/assets/fonts/source/report.json
+public/assets/fonts/source/poem-font-check.json

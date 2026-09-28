@@ -1,0 +1,6 @@
+(C) Dr. Hann-Tzong Wang, 1999-2004; (C) Ichiten Fonts Project, 2013-14. This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public Linense as published by the Free Software Foundation; either version 2 of the License, or any later version.
+
+Jinling Yan Light is a renamed, lighter WOFF2 subset of I.Ngaan 1.004 under GPL-2.0-or-later.
+Modification: fixed-book character subset, webfont format, renamed family, and modest outline thinning with FreeType strength -8 on a 1024-unit em; original advance widths retained.
+This lighter weight was made for this book, not published as a Light weight by Ichiten Fonts Project.
+The source directory contains the original TTF, character list and rebuild script.

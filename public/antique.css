@@ -1,0 +1,143 @@
+/* One judgment per opening: a complete picture field facing a calligraphic leaf. */
+:root{--ink:#2e322c;--paper:#eee8d9;--desk:#222b29;--gold:#c6b99d;--muted:#a9aca1;--book-material:url("assets/book-materials.png");--inner-paper:url("assets/inner-paper-user.png")}
+html{background:var(--desk)}
+body{background:radial-gradient(ellipse at 50% 42%,#36413b88,transparent 80%),#222b29;color:#ded8c7}
+body:before{opacity:.035}
+button:focus-visible,a:focus-visible{outline:1px solid #d8c495;outline-offset:4px}
+.topbar{height:66px;padding:0 max(24px,5vw)}
+.header-actions{display:none}
+.identity{display:flex;gap:22px;align-items:center;color:#e3ddcd;letter-spacing:0}
+.identity-title{font-family:"Jinling Poem Kai",var(--brush);font-size:clamp(24px,2.6vw,34px);letter-spacing:.18em;line-height:1.1}
+.identity-edition{font-family:var(--serif);padding-left:20px;border-left:1px solid #b9b39a44;font-size:16px;letter-spacing:.15em;line-height:1}
+.quiet{color:#aeb5a6;opacity:.8}
+.reading-room{min-height:calc(100svh - 66px);display:flex;flex-direction:column;justify-content:flex-start;align-items:center;padding:8px max(24px,5vw) 16px;overflow-x:clip}
+.book-stage{width:min(100%,calc(max(360px,100svh - 162px)*1.7));height:auto;aspect-ratio:17/10;perspective:max(1800px,260svh);container-type:inline-size}
+.book-stage:after{inset:auto 5% -12px;height:24px;background:#080e0b99;filter:blur(17px)}
+.page-edges,.right-edges{top:2px;bottom:-4px;border:1px solid #b1a990;border-bottom:1px solid #a99b7d;background:repeating-linear-gradient(0deg,#e6ddc8 0 1px,#b8ac9066 1px 1.5px,#f0e8d8 1.5px 3px);box-shadow:0 3px 0 #d2c7b0,0 6px 0 #233b45,0 8px 4px #080c0999}
+.leaf,.left-leaf,.right-leaf{container-type:size;background:var(--paper);border:1px solid #b9ad934d;color:var(--ink)}
+.leaf:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:var(--inner-paper);background-size:100% 100%;background-position:center;background-repeat:no-repeat;filter:none;opacity:1}
+.leaf:after{inset:0;border:0;box-shadow:inset 0 0 12px #907a4420;pointer-events:none}
+.left-leaf{border-radius:2px 9px 8px 2px;box-shadow:inset -14px 0 16px -14px #51442c88}
+.right-leaf{border-radius:9px 2px 2px 8px;box-shadow:inset 14px 0 16px -14px #51442c88}
+.gutter{width:13px;background:linear-gradient(90deg,transparent,#564c362c 43%,#50452f50 49%,#fff9e552 53%,transparent);z-index:3}
+.folio{position:absolute;inset:5.2% 8%;z-index:1;border:0;box-shadow:none}
+.folio:before{display:none}
+.art{position:absolute;inset:8px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#eee8dc}
+.art img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:cover;object-position:center;filter:none;mix-blend-mode:normal;mask-image:none}
+.poem{position:absolute;inset:auto;left:50%;top:48%;transform:translate(-50%,-50%);width:max-content;height:max-content;display:flex;flex-direction:row-reverse;align-items:flex-start;justify-content:center;gap:4.1cqw;font-family:"Jinling Poem Kai","Kaiti SC",serif;font-weight:400;color:#292e27}
+.poem p{font-size:min(10.6cqw,var(--verse-height-size));line-height:1.14;letter-spacing:.23em;margin:0;writing-mode:vertical-rl;text-orientation:upright;white-space:nowrap}
+.page-number,.cover-frame,.cover-seal,.cover-inscription,.verse-seal,.page-caption,.art-label,.atmosphere{display:none}
+.spread{cursor:grab}
+.book[data-phase="turning"] .spread{cursor:grabbing}
+.cover{container-type:size;cursor:pointer;border:1px solid #263b4280;border-right:1px solid #16282e;border-radius:1px;background-color:#263d46;background-image:linear-gradient(#1f3b4963,#1f3b4963),var(--book-material);background-size:100% 100%,200% 100%;background-position:center,0 0;background-repeat:no-repeat;box-shadow:inset 0 0 4px #10212850,0 2px 3px #1019146b}
+.cover:after{background:linear-gradient(90deg,#0d171d70,transparent 85%)}
+.cover-label{left:15%;top:9%;width:20%;height:64%;padding:4.5cqh 5px 3.5cqh;background:#e9e3d2;color:#33382f;box-shadow:0 1px 1px #0c253355;align-items:center;justify-content:flex-start;border:1px solid #b6b09540}
+.cover-label:before{inset:5px;border:1px solid #837b6238;box-shadow:none}
+.cover-title,.cover-subtitle{font-family:"Jinling Poem Kai",var(--brush);font-weight:400;line-height:1;writing-mode:vertical-rl;text-orientation:upright;white-space:nowrap;color:#34382f}
+.cover-title{font-size:min(48px,7.2cqh);letter-spacing:.17em}
+.cover-subtitle{font-size:min(26px,4cqh);letter-spacing:.25em;margin-top:auto;padding-top:0}
+.binding{position:absolute;top:0;bottom:auto;right:-1px;height:100%;width:clamp(25px,9%,40px);border:0;overflow:visible;pointer-events:none;filter:none}
+.binding-holes{fill:#091c23;opacity:.85}
+.binding-shadow,.binding-thread,.binding-twist{fill:none;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.binding-shadow{stroke:#0c1721;stroke-width:2.1;opacity:.55;transform:translate(.6px,.6px)}
+.binding-thread{stroke:#c9c1a8;stroke-width:1.2}
+.binding-twist{stroke:#f4efd9;stroke-width:.35;opacity:.7}
+.cover:before{content:"";position:absolute;left:0;bottom:0;width:22px;height:22px;background:linear-gradient(45deg,#16252ed9 0 47%,#d6cebb 49%,#f2e9d5 90%);filter:drop-shadow(2px -2px 2px #07151a65);transition:width .28s ease,height .28s ease;pointer-events:none}
+.book[data-phase="closed"] .cover:before{animation:cover-corner-lift 1.6s ease-in-out .65s 2}
+.book[data-phase="closed"] .cover:is(:hover,:focus-visible):before{width:38px;height:38px;animation:none}
+.page-hit{width:10%;min-width:40px}
+.page-hit:after{width:17px;height:17px;opacity:.45;background:linear-gradient(135deg,transparent 45%,#a89f8650 48%,#f8f6ec 51%,#ddd8c5 100%);filter:drop-shadow(1px -1px 2px #66664938);transition:width .2s ease,height .2s ease,opacity .2s ease}
+.page-hit:disabled:after{opacity:0}
+@media(hover:hover){.page-hit:not(:disabled):hover:after{width:36px;height:36px;opacity:1}}
+.page-hit:not(:disabled):focus-visible:after{width:36px;height:36px;opacity:1}
+@keyframes cover-corner-lift{0%,100%{width:22px;height:22px}50%{width:34px;height:34px}}
+.control-area{width:100%;height:60px;margin-top:20px}
+.reader-controls{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 16px}
+.navigation{display:flex;align-items:center;justify-content:center;gap:18px;min-height:44px;margin:auto}
+.folio-select{padding:0 10px;min-height:44px;gap:20px;line-height:1}
+.folio-select>span:first-child{display:block;color:#c1bdad;font-size:15px;letter-spacing:.15em}
+.folio-name{min-width:0;padding-left:20px;border-left:1px solid #b4b09b40;font-size:16px;letter-spacing:.1em;color:#d4d1c0}
+.minor-controls{margin:0;padding-left:24px;border-left:1px solid #b3b39a32;gap:20px;color:#c5c4b4}
+.icon-button{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;min-height:44px;padding:11px;flex:none;line-height:1;border-radius:50%}
+.icon-button svg{display:block;width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+.nav-button{border:1px solid #b8b39e99;color:#e7e1cf}
+.nav-button:disabled{border-color:#a6a79144;opacity:.3}
+.icon-button:not(:disabled):hover{background:#d6d1b315}
+.minor-controls .action-button{display:inline-flex;align-items:center;justify-content:center;min-width:48px;height:44px;min-height:44px;padding:0 10px;font-size:15px;line-height:1;letter-spacing:.13em;white-space:nowrap;border-radius:3px}
+.minor-controls .action-button:not(:disabled):hover,.folio-select:not(:disabled):hover{color:#fff2d5}
+.leaf-mode{display:none}
+.folio-transcript+.folio-transcript{margin-top:24px;padding-top:12px;border-top:1px solid #a3917038}
+dialog{background:#f0eadb;border-color:#b5b09b;color:#363a31;box-shadow:0 20px 90px #0006}
+dialog::backdrop{background:#121c17c9}
+@media(min-width:901px) and (max-width:1150px){.book-stage{aspect-ratio:1.34;width:min(100%,calc(max(400px,100svh - 162px)*1.34))}}
+@media(max-width:700px),(max-width:900px) and (orientation:portrait){
+ .topbar{height:54px;padding:0 10px 0 12px;position:relative}
+ .identity{gap:0}.identity-title{font-size:clamp(18px,5vw,22px);letter-spacing:.035em}.identity-edition{display:none}
+ .quiet{width:36px;height:44px;min-height:44px;padding:9px;opacity:.6}
+ .reading-room{height:calc(100svh - 54px);height:calc(100dvh - 54px);min-height:0;justify-content:flex-start;padding:4px 10px max(6px,env(safe-area-inset-bottom));gap:12px}
+ .book-stage{width:min(100%,calc((100svh - 128px)*.75));width:min(100%,calc((100dvh - 128px)*.75));height:auto;flex:1;min-height:0;aspect-ratio:auto;perspective:1600px}
+ .leaf,.cover-hinge,.page-edges,.single-turn{width:100%}
+ .leaf{border-radius:2px}
+ #rightLeaf,.right-edges,.gutter{display:none}
+ .single-turn{left:0}
+ .turn-shadow,.turn-shadow.backward{left:auto;right:0;background:linear-gradient(270deg,#33231280,transparent)}
+ .folio{inset:5% 6%}
+ .poem{top:48%;gap:3.8cqw}
+ .poem p{font-size:min(11cqw,var(--verse-height-size));line-height:1.14;letter-spacing:.23em}
+ .cover-label{width:23%;left:16%;height:64%}
+ .control-area{height:44px;flex:0 0 44px;margin-top:0;width:min(100%,460px)}
+ .reader-controls{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:0}
+ .navigation{gap:2px;min-height:44px;min-width:0;flex:1;margin:0}
+ .folio-select{padding:0;gap:5px;min-width:0;justify-content:center;flex:1}
+ .folio-select>span:first-child{font-size:11px;letter-spacing:0;white-space:nowrap}
+ .folio-name{font-size:13px;padding-left:5px;letter-spacing:0;border-left-color:#b4b09b55;white-space:nowrap}
+ .header-actions{display:flex;align-items:center;margin-left:auto;margin-right:4px;flex:none}
+ .minor-controls{position:static;height:44px;margin:0;padding:0;border:0;gap:0;flex:none}
+ .minor-controls .action-button{min-width:44px;width:44px;padding:0;font-size:12px;letter-spacing:.04em}
+ .leaf-mode{display:flex;align-items:center;justify-content:center;gap:0;flex:none;height:44px;margin-left:0;padding-left:4px;border-left:1px solid #b9b4993b}
+ .leaf-mode button{position:relative;height:44px;width:44px;padding:0;font-size:14px;line-height:1;display:grid;place-items:center;border-radius:0;color:#969f91}
+ .leaf-mode button[aria-pressed="true"]{background:none;color:#f2e8d0}
+ .leaf-mode button[aria-pressed="true"]:after{content:"";position:absolute;width:15px;height:1px;background:#d7c392;left:50%;bottom:6px;transform:translateX(-50%)}
+ .leaf-mode>span{display:none}
+ .nav-button{border:0;border-radius:0;color:#dcd6c2}
+ .nav-button:disabled{border:0}
+ .page-hit{width:15%;min-width:44px}
+}
+
+/* Quiet paper mounting gives the painting breathing room without floral overlap. */
+.picture-folio{inset:4.5% 4.6% 5.5%}
+.picture-folio .art{inset:0;background:transparent}
+/* Reuse the supplied paper itself: a clean center for the mounting, and
+   CSS windows onto its original corner and line details (1055 × 1491). */
+.leaf:has(>.picture-folio):before{background-image:var(--inner-paper);background-size:400% 400%;background-position:50% 50%;opacity:1}
+.picture-corners{position:absolute;inset:0;z-index:0;pointer-events:none}
+.picture-corner,.picture-border{position:absolute;background-image:var(--inner-paper);background-repeat:no-repeat;pointer-events:none}
+/* Source rectangle: x16 y10, 80 × 80. */
+.picture-corner{width:7.582938%;height:5.365526%;background-size:1318.75% 1863.75%;background-position:1.641026% .708717%}
+.picture-corner.top-left{top:.670691%;left:1.516588%}
+.picture-corner.top-right{top:.670691%;right:1.516588%;transform:scaleX(-1)}
+.picture-corner.bottom-left{bottom:.670691%;left:1.516588%;transform:scaleY(-1)}
+.picture-corner.bottom-right{bottom:.670691%;right:1.516588%;transform:scale(-1)}
+/* Source strips: x95 y10, 865 × 20; x16 y350, 16 × 250.
+   One source pixel of overlap keeps the joins closed at fractional sizes. */
+.picture-border.top,.picture-border.bottom{left:9.004739%;right:9.004739%;height:1.341382%;background-size:121.965318% 7455%;background-position:50% .679810%}
+.picture-border.top{top:.670691%}
+.picture-border.bottom{bottom:.670691%;transform:scaleY(-1)}
+.picture-border.left,.picture-border.right{top:5.969148%;bottom:5.969148%;width:1.516588%;background-size:6593.75% 596.4%;background-position:1.539942% 28.203062%}
+.picture-border.left{left:1.516588%}
+.picture-border.right{right:1.516588%;transform:scaleX(-1)}
+
+.picture-folio[data-entry="2"] .art img{object-position:44% center}
+
+.picture-folio[data-entry="7"] .art img{object-position:65% center}
+
+@media(max-width:700px),(max-width:900px) and (orientation:portrait){
+ .picture-folio[data-entry="2"] .art img{object-position:41% center}
+ .picture-folio[data-entry="6"] .art img{object-position:63% center}
+ .picture-folio[data-entry="7"] .art img{object-position:82% center}
+ .picture-folio[data-entry="9"] .art img{object-position:48% center}
+}
+
+/* Lettering follows the approved image prototype; text remains accessible. */
+.poem-art{position:absolute;left:50%;top:48%;width:74cqw;height:60cqh;transform:translate(-50%,-50%);pointer-events:none}
+.poem-art img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:none;mix-blend-mode:normal}

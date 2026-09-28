@@ -1,0 +1,134 @@
+@charset "UTF-8";
+/* Fixed-text font subsets; full font credits and licenses in assets/fonts/. */
+@font-face{font-family:"Jinling Yan Light";src:url("assets/fonts/jinling-yan-light.woff2?v=20260927-dancai4") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Jinling Poem Kai";src:url("assets/fonts/jinling-poem-kai.woff2?v=20260927-tw-kai") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:"Jinling Serif";src:url("assets/fonts/jinling-serif.woff2?v=20260927-dancai4") format("woff2");font-style:normal;font-weight:400;font-display:swap}
+:root{color-scheme:dark;--ink:#322a20;--paper:#e9dabb;--gold:#baaa87;--muted:#90978b;--desk:#18201d;--brush:"Jinling Yan Light","Kaiti SC","KaiTi",serif;--serif:"Jinling Serif","Songti SC","STSong","Noto Serif CJK SC","SimSun",serif;--sans:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;font-synthesis:none}
+*{box-sizing:border-box}html{min-height:100%;background:var(--desk)}body{margin:0;color:#ddd8c8;font:16px var(--serif);background:radial-gradient(ellipse at 48% 40%,#3c453734 0%,#202c240a 48%,#0b131a33 100%);min-height:100svh}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.065;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E")}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:2px solid #d4b475;outline-offset:7px}button{background:none;border:0}button:disabled{opacity:.3;cursor:default}a{color:inherit}.topbar{height:108px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:3}.identity{text-decoration:none;display:flex;align-items:center;gap:15px;font-size:15px;letter-spacing:2px}.identity-divider{color:#647267;margin:0 12px}.seal{font-family:var(--serif);border:2px solid #aa5445;outline:1px solid #aa544588;outline-offset:3px;color:#bc6b59;line-height:1.13;letter-spacing:2px;text-align:center;padding:4px;display:inline-block}.small-seal{font-size:14px;transform:rotate(-3deg)}.quiet{font-size:14px;color:#c0c3b5;letter-spacing:1px;padding:12px}.quiet span{margin-left:12px}.reading-room{position:relative;display:flex;flex-direction:column;align-items:center;isolation:isolate;padding:8px 34px 26px}.overline{font-size:13px;letter-spacing:4px;color:#b3b09e;display:flex;align-items:center;gap:18px;margin-bottom:35px}.overline span{width:28px;height:1px;background:#89948055}
+/* All cover and page faces share one fixed pair of rectangles. */
+body{overflow-x:clip}
+.reading-room{padding-bottom:15px}
+.book-stage{width:min(100%,1000px);height:clamp(340px,56vw,610px);position:relative;margin:0;perspective:1800px;perspective-origin:50% 45%;isolation:auto}
+.book-stage:after{content:"";position:absolute;inset:auto 9% -20px;height:40px;background:#0008;filter:blur(24px);pointer-events:none;z-index:-1}
+.book{user-select:none;-webkit-user-select:none;position:absolute;inset:0;transform:translate3d(25%,0,0);transform-style:preserve-3d;--cover-open:0}
+.page-edges,.right-edges{position:absolute;top:4px;bottom:-7px;left:0;width:50%;background:repeating-linear-gradient(0deg,#a19172 0px,#cdbc9b 1px,#dfd0af 2px,#bdac88 3px);border:1px solid #92805d;border-bottom:4px solid #314238;box-shadow:0 9px 15px #030a0660;pointer-events:none}
+.right-edges{left:50%;visibility:hidden}
+.spread{position:absolute;inset:0;display:flex;transform-style:preserve-3d}
+.leaf{flex:none;width:50%;height:100%;position:relative;overflow:hidden;color:var(--ink);background-color:var(--paper);border:1px solid #ae9b7555}
+.left-leaf{background-image:linear-gradient(90deg,#70502212 0%,transparent 5%,transparent 87%,#88754c0c 95%,#58462236 100%),radial-gradient(ellipse at 35% 45%,#f9efda77,transparent 85%)}
+.right-leaf{background-image:linear-gradient(90deg,#6046202b 0%,transparent 7%,transparent 95%,#70502218 100%),radial-gradient(ellipse at 65% 45%,#f9efda77,transparent 85%)}
+.leaf:after{content:"";position:absolute;inset:15px;pointer-events:none;border:1px solid #9c84544a}
+#rightLeaf{visibility:hidden}
+.book[data-phase="open"] #rightLeaf,.book[data-phase="turning"] #rightLeaf,.book[data-phase="preparing"] #rightLeaf,.book[data-phase="open"] .right-edges,.book[data-phase="turning"] .right-edges,.book[data-phase="preparing"] .right-edges{visibility:visible}
+.gutter{position:absolute;left:50%;top:0;bottom:0;width:25px;transform:translateX(-50%);background:linear-gradient(90deg,transparent,#3d321c0d 37%,#38281b35 49%,#f9efd160 53%,transparent);pointer-events:none;z-index:3;visibility:hidden}
+.book[data-phase="open"] .gutter,.book[data-phase="turning"] .gutter,.book[data-phase="preparing"] .gutter{visibility:visible}
+.cover-hinge{position:absolute;left:0;top:0;width:50%;height:100%;transform-origin:right center;transform-style:preserve-3d;z-index:10;will-change:transform}
+.book[data-phase="open"] .cover-hinge,.book[data-phase="turning"] .cover-hinge,.book[data-phase="preparing"] .cover-hinge{visibility:hidden;pointer-events:none}
+.cover{display:block;position:absolute;inset:0;width:100%;height:100%;padding:0;text-align:initial;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(1px);border:1px solid #536052;border-right:4px solid #273a30;border-radius:2px;box-shadow:inset 3px 0 8px #ffffff0f,inset -4px 0 5px #08180f77,0 2px 5px #020b0870;background:repeating-linear-gradient(0deg,#ffffff03 0 1px,#00000003 1px 3px),repeating-linear-gradient(90deg,#ffffff05 0 1px,#00000006 1px 3px),linear-gradient(105deg,#41514b,#334640 44%,#263c34 88%,#172c25 98%,#4c5b4f)}
+.cover:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#040b03aa,transparent 75%);opacity:var(--cover-shade,0)}
+.cover-inside{position:absolute;inset:0;width:100%;height:100%;transform:rotateY(180deg) translateZ(.7px);backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:none}
+.cover-frame{position:absolute;inset:18px 46px 18px 20px;border:1px solid #b0bc932c;box-shadow:0 0 0 4px #293f3022}.cover-label{position:absolute;left:23%;top:10%;height:69%;width:96px;background:linear-gradient(90deg,#c4b794,#e7d9b9 11%,#e5d6b6 86%,#bcae8c);color:#343a31;padding:22px 15px 15px;box-shadow:0 2px 3px #071a0960;display:flex;align-items:center;flex-direction:column}.cover-label:before{content:"";position:absolute;inset:8px;border:1px solid #82745188;box-shadow:0 0 0 3px #d6c7a2}.cover-title{writing-mode:vertical-rl;font-size:35px;letter-spacing:8px;white-space:nowrap;position:relative}.cover-subtitle{font-size:18px;letter-spacing:4px;margin-top:auto;padding-top:12px}.cover-inscription{writing-mode:vertical-rl;font-size:14px;letter-spacing:4px;position:absolute;bottom:12%;right:26%;color:#c7c5a199}.cover-seal{position:absolute;left:24%;bottom:9%;font-size:17px;transform:rotate(-6deg);opacity:.8}.binding{position:absolute;right:17px;top:7%;bottom:7%;width:12px;border-left:1px solid #cbba8588}.binding i{position:absolute;right:-22px;width:40px;height:13px;border-top:2px solid #b5a47a;border-bottom:2px solid #ae9d76;transform:rotate(-8deg);filter:drop-shadow(0 2px 1px #0009)}.binding i:after{content:"";position:absolute;left:0;top:-4px;width:4px;height:17px;background:#bfb38a;border-radius:50%;box-shadow:-2px 0 2px #101d14}.binding i:nth-child(1){top:1%}.binding i:nth-child(2){top:32%}.binding i:nth-child(3){top:66%}.binding i:nth-child(4){bottom:0}
+.cover-title{font-size:clamp(27px,3.1vw,36px)}
+.cover-label{width:clamp(74px,9vw,98px);height:72%;top:9%;padding:22px 12px 14px}
+.cover-inscription{font-size:14px}
+.cover-seal{bottom:5%;font-size:15px}
+.control-area{position:relative;width:min(100%,700px);height:160px;margin-top:28px}
+.closed-controls,.reader-controls{position:absolute;inset:0;width:100%;text-align:center;margin:0}
+[hidden]{display:none!important}
+.closed-controls{padding-top:4px}
+.open-book{font-size:18px;letter-spacing:5px;border-bottom:1px solid #c0ae775c;padding:12px 22px 14px}
+.open-book span{font-family:var(--sans);font-size:19px;display:inline-block;margin-left:24px;color:#bfa879;transition:transform .2s}
+.open-book:hover span{transform:translate(3px,-3px)}
+.closed-controls p{font-size:13px;letter-spacing:3px;color:#90978b;margin-top:18px}
+.navigation{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px}
+.nav-button{font-size:14px;letter-spacing:2px;padding:14px 8px;white-space:nowrap;color:#d0cfbf;min-height:46px}
+.nav-button span{padding:0 10px;color:#bba47b}
+.folio-select{display:flex;align-items:center;justify-content:center;gap:18px;font-size:14px;padding:13px 10px;min-height:46px}
+.folio-select>span:first-child{color:#baab87;white-space:nowrap;font-size:13px;font-variant-numeric:tabular-nums}
+.folio-name{letter-spacing:3px;min-width:70px}
+.minor-controls{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:11px;color:#b9bcae}
+.minor-controls button{font-size:14px;letter-spacing:2px;padding:12px;min-height:44px}
+.minor-controls>span{height:12px;width:1px;background:#9aa38340}
+.keyboard-hint{font-size:12px;color:#939d8e;letter-spacing:1px;margin:7px 0 0}
+.touch-hint{display:none}
+button:disabled{opacity:.38}
+.nav-button:not(:disabled):hover,.minor-controls button:not(:disabled):hover,.quiet:hover,.folio-select:not(:disabled):hover{color:#f1dec0}
+.page-hit{position:absolute;top:0;bottom:0;width:12%;z-index:5;cursor:grab;touch-action:pan-y}
+.page-hit:active{cursor:grabbing}
+.page-hit:disabled{pointer-events:none}
+.page-hit:after{content:"";position:absolute;bottom:2px;width:25px;height:25px;opacity:0;transition:opacity .2s;background:linear-gradient(135deg,transparent 48%,#f7ecd0 50%,#a18b6166 100%);pointer-events:none}
+.next-hit{left:0}.prev-hit{right:0}
+.next-hit:after{left:1px;transform:rotate(90deg)}.prev-hit:after{right:1px}
+.page-hit:hover:after{opacity:.7}
+.page-caption{position:absolute;top:37px;right:32px;writing-mode:vertical-rl;font-size:14px;letter-spacing:4px;color:#796b52}
+.poem{position:absolute;inset:90px 14% 92px 10%;display:flex;flex-direction:row-reverse;align-items:flex-start;justify-content:center;gap:clamp(12px,2.6vw,33px)}
+.poem p{margin:0;writing-mode:vertical-rl;font-size:clamp(22px,2.6vw,33px);line-height:1.25;letter-spacing:.22em;white-space:nowrap}
+.verse-seal{position:absolute;left:17%;bottom:15%;color:#9d4b3e;border-color:#9d4b3e;outline-color:#9d4b3e77;font-size:13px;transform:rotate(-5deg);opacity:.85}
+.page-number{position:absolute;bottom:27px;left:0;width:100%;text-align:center;font-size:12px;color:#8a7757;letter-spacing:3px}
+.art{position:absolute;inset:37px 31px 50px;display:flex;align-items:center;justify-content:center}
+.art img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;mix-blend-mode:multiply;filter:sepia(.08);user-select:none;-webkit-user-drag:none;mask-image:linear-gradient(0deg,transparent,#000 3%,#000 97%,transparent),linear-gradient(90deg,transparent,#000 3%,#000 97%,transparent);mask-composite:intersect}
+.art-label{position:absolute;top:38px;right:27px;writing-mode:vertical-rl;font-size:13px;letter-spacing:3px;color:#685d46;z-index:2}
+.turn-layer{position:absolute;top:0;left:0;width:50%;height:100%;transform-style:preserve-3d;z-index:8;pointer-events:none}
+.turn-layer.backward{left:50%}
+.paper-strip{position:absolute;top:0;height:100%;transform-style:preserve-3d;will-change:transform}
+.turn-layer.forward .paper-strip{transform-origin:right center}
+.turn-layer.backward .paper-strip{transform-origin:left center}
+.strip-face{position:absolute;top:0;bottom:0;left:-1.5px;width:calc(100% + 3px);overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;transform:translateZ(.25px)}
+.strip-face.back{transform:rotateY(180deg) translateZ(.25px)}
+.strip-page{position:absolute;top:0;max-width:none;height:100%;pointer-events:none}
+.strip-face:after{content:"";position:absolute;inset:0;background:#342714;opacity:var(--shade,0);pointer-events:none}
+.strip-face.back:after{background:#342714;opacity:var(--shade,0)}
+.turn-shadow{position:absolute;top:0;bottom:0;left:50%;width:0;opacity:0;z-index:4;pointer-events:none;background:linear-gradient(90deg,#33231299,transparent);transform-origin:left center}
+.turn-shadow.backward{left:auto;right:50%;background:linear-gradient(270deg,#33231299,transparent)}
+.atmosphere{position:absolute;inset:220px 7% auto;display:flex;justify-content:space-between;pointer-events:none;z-index:0}
+.atmosphere span{writing-mode:vertical-rl;color:#b4bd9a32;font-size:17px;letter-spacing:10px}
+footer{padding:9px 5% 25px;display:flex;justify-content:space-between;color:#9aa88c;opacity:.65;letter-spacing:2px;font-size:12px}
+dialog{color-scheme:light;width:min(660px,calc(100% - 32px));max-height:85svh;padding:30px 38px 38px;border:1px solid #b9a987;border-radius:2px;background:#eee3cc;color:#3b352b;box-shadow:0 20px 90px #0008;font:16px/1.9 var(--serif)}dialog::backdrop{background:#0b1513bb;backdrop-filter:blur(5px)}.dialog-top{display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #a391702e;padding-bottom:12px;margin-bottom:23px}.eyebrow{font-size:13px;letter-spacing:4px;color:#7a6b50}.dialog-close{font-size:28px;line-height:1;padding:2px 8px;color:#77694f}dialog h2{font-size:25px;font-weight:400;letter-spacing:3px;margin:10px 0 20px}dialog h3{font-size:15px;color:#8f4637;letter-spacing:2px;font-weight:400;margin:25px 0 10px}dialog p{margin:10px 0}dialog .note{font-size:14px;color:#7c705b}dialog a{color:#785b31;text-underline-offset:4px}.catalog-list{list-style:none;padding:0;margin:0}.catalog-list button{display:flex;gap:22px;align-items:center;width:100%;text-align:left;padding:10px 5px;border-bottom:1px solid #ae977b30;font-size:17px}.catalog-list button span{font-size:13px;color:#97734c;min-width:29px}.catalog-list button.active{color:#9b4437}.catalog-list button:hover{background:#af946719}.source-quote{border-left:2px solid #a58d61;padding:1px 0 1px 16px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+@media(max-width:760px){
+ .topbar{height:86px;padding:0 24px}.identity{font-size:13px;gap:12px;letter-spacing:1px}.identity-divider{margin:0 6px}.quiet{font-size:13px;padding:10px 0}.quiet span{display:none}
+ .reading-room{padding:5px 18px 0}.overline{margin-bottom:27px;font-size:12px;letter-spacing:3px}.book-stage{height:clamp(340px,56vw,470px)}
+ .cover-label{width:76px;left:20%;padding-top:19px}.cover-title{font-size:27px;letter-spacing:5px}.cover-subtitle{font-size:16px;letter-spacing:3px}.cover-inscription{font-size:12px;letter-spacing:2px;right:23%;bottom:12%}.cover-seal{left:22%;font-size:12px}
+ .cover-frame{inset:12px 30px 12px 12px}.binding{right:12px;width:8px}.binding i{right:-16px;width:29px;height:10px}.binding i:after{height:14px}
+ .poem{inset:65px 18% 62px 10%;gap:clamp(9px,2vw,16px)}.poem p{font-size:clamp(17px,3vw,23px);letter-spacing:.15em}
+ .leaf:after{inset:10px}.art{inset:31px 16px 40px}.page-caption{top:24px;right:16px;font-size:12px;letter-spacing:2px}.art-label{top:24px;right:13px;font-size:12px;letter-spacing:2px}
+ .page-number{bottom:19px;font-size:12px;letter-spacing:1px}.verse-seal{font-size:12px;bottom:16%;left:19%;padding:2px}
+ .control-area{margin-top:23px;height:152px}.nav-button{letter-spacing:0;font-size:14px;padding:12px 0}.nav-button span{padding:0 4px}.navigation{gap:5px}.folio-select{gap:7px;padding:12px 0;font-size:14px}.folio-name{letter-spacing:1px;min-width:58px}.folio-select>span:first-child{font-size:12px}.minor-controls{margin-top:8px}
+ .desktop-hint{display:none}.touch-hint{display:inline}.keyboard-hint{font-size:12px;letter-spacing:0}.atmosphere{inset:175px 5% auto}.atmosphere span{font-size:14px}footer{justify-content:center;padding:12px 18px 24px}footer span:last-child{display:none}dialog{padding:22px 24px 30px}
+}
+@media(max-width:440px){
+ .topbar{padding:0 18px}.identity>span:last-child{font-size:12px}.reading-room{padding-left:12px;padding-right:12px}.book-stage{height:330px}
+ .poem{top:64px;left:8%;right:17%;gap:9px}.poem p{font-size:17px;letter-spacing:.15em}.page-caption{right:12px;top:22px}.art{inset:32px 11px 38px}
+ .cover-label{left:15%;width:70px}.cover-inscription{right:19%;font-size:12px}.cover-title{font-size:26px;letter-spacing:4px}.cover-seal{left:18%;bottom:7%;font-size:12px}.cover-subtitle{padding-top:5px}.cover-label{height:74%}
+ .folio-select{gap:5px}.folio-name{font-size:13px}.nav-button{font-size:13px}.minor-controls button{font-size:14px}.overline{margin-bottom:23px}
+}
+@media(max-width:350px){.poem{gap:6px}.poem p{font-size:16px}.cover-inscription{display:none}.folio-select>span:first-child{display:none}.identity-divider{margin:0 2px}}
+/* Yan-style calligraphy for the manuscript; sober type for the reading UI. */
+.cover-title,.cover-subtitle,.cover-inscription,.seal,.atmosphere,.open-book{font-family:var(--brush);font-weight:400}
+.poem{font-family:"Jinling Poem Kai","Kaiti SC","KaiTi",serif;font-weight:400;font-synthesis:none}
+.cover-title{font-size:clamp(34px,4.2vw,47px);line-height:1.08;letter-spacing:5px;color:#2e2b22}
+.cover-subtitle{font-size:21px;letter-spacing:3px;line-height:1.3;white-space:nowrap}
+.cover-inscription{font-size:16px;letter-spacing:3px;color:#cec9acb3}
+.poem{gap:clamp(14px,2.6vw,32px)}
+.poem p{font-size:clamp(26px,3.2vw,38px);line-height:1.2;letter-spacing:.19em;text-orientation:upright}
+.page-caption,.art-label{font-size:13px;letter-spacing:3px;color:#78694e}
+.page-number{color:#796c52}
+.folio-name{font-size:16px;letter-spacing:1px}
+.keyboard-hint{font-family:var(--sans);letter-spacing:.5px;color:#a1a799}
+dialog{font-size:16px;line-height:1.95;letter-spacing:.025em}
+dialog h2{font-family:var(--serif);font-weight:400;font-size:26px;letter-spacing:2px}
+dialog h3{font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:1px}
+.catalog-list button{font-size:17px;line-height:1.75}
+@media(max-width:760px){
+ .cover-title{font-size:32px;letter-spacing:4px}.cover-subtitle{font-size:18px;letter-spacing:2px}.cover-inscription{font-size:13px;letter-spacing:2px}
+ .poem{gap:clamp(9px,2vw,16px)}.poem p{font-size:clamp(19px,3.25vw,25px);letter-spacing:.16em}
+ .page-caption,.art-label{font-size:12px;letter-spacing:2px}.folio-name{font-size:14px}.keyboard-hint{letter-spacing:0}
+}
+@media(max-width:440px){
+ .cover-title{font-size:31px;letter-spacing:3px}.cover-inscription{font-size:12px}
+ .cover-seal{bottom:3%}
+ .poem{gap:8px}.poem p{font-size:19px;letter-spacing:.16em;line-height:1.15}
+ .folio-name{font-size:13px}
+}
+@media(max-width:350px){.poem{gap:6px}.poem p{font-size:17px;letter-spacing:.18em}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
