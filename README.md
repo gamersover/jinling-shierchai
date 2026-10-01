@@ -21,6 +21,14 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory public
 
 访问 <http://127.0.0.1:8765/>。网站运行所需图像和字体均在仓库中；文献来源链接在用户打开时跳转到外部网站。
 
+## 添加到主屏幕或程序坞
+
+页面提供 180×180 PNG `apple-touch-icon`，供 iPhone / iPad 添加到主屏幕时使用。`site.webmanifest` 指定应用名称、独立窗口启动，以及 192、512 和 1024 像素图标；1024 像素版为不透明、满底色的 `maskable` 图标，供 macOS 程序坞等场景裁切。图案沿用标签页的书册，矢量源文件为 `public/assets/icons/app-icon.svg`。
+
+已添加的快捷方式可能保留旧图标，更新后可删除旧快捷方式，在 Safari 重新打开网站并添加。独立窗口启动需要联网，网站没有注册离线缓存 Service Worker。
+
+参考：[Apple 主屏幕图标配置](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html)、[WebKit 程序坞图标说明](https://webkit.org/blog/14787/webkit-features-in-safari-17-2/#web-app-icons)。
+
 ## Vercel 部署
 
 从 GitHub 导入仓库，项目根目录选本仓库根目录。`vercel.json` 已指定：
@@ -41,6 +49,8 @@ python3 -m http.server 8765 --bind 127.0.0.1 --directory public
 ```text
 public/
   index.html       页面入口
+  apple-touch-icon.png 苹果主屏幕图标
+  site.webmanifest 应用名称、启动方式和图标声明
   style.css        基础样式
   antique.css      装帧和响应式样式
   content.js       十一组图判及来源
